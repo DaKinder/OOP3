@@ -2,18 +2,18 @@ package gb.HomeWork.View.Commands;
 
 import gb.HomeWork.View.ConsoleUI;
 
-public class ShowInfoButton implements ICommand{
+public class AddFromFileButton implements ICommand{
 
     private ConsoleUI consoleUI;
     private String menuItem;
 
-    public ShowInfoButton(ConsoleUI consoleUI) {
+    public AddFromFileButton(ConsoleUI consoleUI) {
         this.consoleUI = consoleUI;
-        menuItem = "Показать список";
+        menuItem = "Прочитать данные из файла";
     }
     @Override
     public void execute() {
-        consoleUI.getConsoleUI().printUserList();
+        consoleUI.getConsoleUI().consoleRead();
     }
     @Override
     public String getMenuItem() {

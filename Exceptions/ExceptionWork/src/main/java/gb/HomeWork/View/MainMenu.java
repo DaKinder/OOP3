@@ -8,8 +8,10 @@ public class MainMenu {
     final private List<ICommand> commandList;
     protected MainMenu(ConsoleUI consoleUI){
         commandList = new ArrayList<>();
-        commandList.add(new AddButton(consoleUI));
-        commandList.add(new ShowInfoButton(consoleUI));
+        commandList.add(new AddFromTerminalButton(consoleUI));
+        commandList.add(new AddFromFileButton(consoleUI));
+        commandList.add(new ShowCorrectInfoButton(consoleUI));
+        commandList.add(new ShowIncorrectInfoButton(consoleUI));
         commandList.add(new ChangeButton(consoleUI));
         commandList.add(new SafeButton(consoleUI));
         commandList.add(new FinishButton(consoleUI));

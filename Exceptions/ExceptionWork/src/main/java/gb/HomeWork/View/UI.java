@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public interface UI {
     public void start();
-    public void addPerson();
+    public void consoleRead();
+    public void fileRead();
     public ArrayList printUserList();
     String changeInput();
     public String saveToFile();

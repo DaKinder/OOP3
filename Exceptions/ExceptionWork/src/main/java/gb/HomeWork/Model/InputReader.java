@@ -8,8 +8,8 @@ public class InputReader {
 
     final private ArrayList<String[]> rawObjects;
     private final Scanner scanner;
-    final int value = 6;
-    boolean work;
+    final private int value = 6;
+    private boolean work;
     String[] stringsArr;
     public InputReader(){
         scanner = new Scanner(System.in);
@@ -17,6 +17,7 @@ public class InputReader {
         stringsArr = new String[value];
         work = true;
     }
+    public int getListSize(){return rawObjects.size();}
 
     public ArrayList<String[]> getList(){return rawObjects;}
 

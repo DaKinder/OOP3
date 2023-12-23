@@ -2,17 +2,17 @@ package gb.HomeWork.Model;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-import gb.HomeWork.Static.Notice;
 
 public class Validator {
-    private int arrLength;
-    private ArrayList<String[]> validatedList;
+//    private int arrLength;
+    private final ArrayList<String[]> validatedList;
 
     final private ArrayList<String[]> dataFromHub;
 
     public Validator(ArrayList<String[]> list) {
         dataFromHub = list;
-        validatedList = new ArrayList<String[]>();
+        validatedList = new ArrayList<>();
+        checkArray();
     }
 
     private boolean checkPhoneNumber(String phone) {
@@ -51,7 +51,7 @@ public class Validator {
         return day >= 1 && day <= maxDayInMonth;
     }
 
-    public void validateAll() {
+    public void checkArray() {
 
         int phoneCounter = 0;
         int dateCounter = 0;
@@ -63,9 +63,7 @@ public class Validator {
             for (String str : arr) {
                 if (checkDate(str))dateCounter++;
                 if (checkPhoneNumber(str)) phoneCounter++;
-                if (checkName(arr[arrIndex])){
-                    nameCounter++;
-                }
+                if (checkName(arr[arrIndex])){nameCounter++;}
                 arrIndex++;
             }
             if(phoneCounter == 1 && dateCounter == 1 && nameCounter == 3){
@@ -76,7 +74,6 @@ public class Validator {
             nameCounter = 0;
             arrIndex = 0;
         }
-        sortData();
     }
 
 

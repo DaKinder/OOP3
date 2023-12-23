@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class ConsoleUI implements UI{
     private Scanner scanner;
-    private String userInput;
+//    private String userInput;
     private int userChoice;
     private Hub hub;
     private MainMenu mainMenu;
     private boolean process = true;
-    public String getInput(){return userInput;}
+//    public String getInput(){return userInput;}
     public ConsoleUI getConsoleUI(){ return this;}
 
     // Конструктор пользовательского интерфейса
@@ -32,7 +32,7 @@ public class ConsoleUI implements UI{
             Notice.makeChoice();
             try {
                 userChoice = Integer.parseInt( scanner.nextLine() );
-                mainMenu.execute( userChoice - 1 );
+                mainMenu.execute( userChoice -1 );
             } catch (NumberFormatException e) {
                 Notice.tryInputNumber();
             } catch (IndexOutOfBoundsException e){
@@ -43,13 +43,19 @@ public class ConsoleUI implements UI{
 
     // TO DO
     @Override
-    public void addPerson() {
-       hub.addPerson();
-//        System.out.println("Объект создан успешно");
+    public void consoleRead() {
+       hub.readConsole();
     }
+
+    @Override
+    public void fileRead() {
+        hub.readFile();
+    }
+
     @Override
     public ArrayList printUserList() {
-        System.out.println("Вы выбрали второй пункт");
+        hub.print();
+        System.out.println("данные получены");
         return null;
     }
     @Override

@@ -1,39 +1,54 @@
 package gb.HomeWork.Presenter;
 
 import gb.HomeWork.Model.Inspector;
+import gb.HomeWork.Model.Printer;
 import gb.HomeWork.Model.Validator;
 import gb.HomeWork.View.ConsoleUI;
 import gb.HomeWork.Model.InputReader;
 import java.util.ArrayList;
 
 public class Hub {
-    private ArrayList<String[]> objectsFromUser;
+    Printer printer;
+    private ArrayList<String[]> userInput;
     private ArrayList<String[]> correctObjectsFromInspector;
     private ArrayList<String[]> incorrectObjectsFromInspector;
     ConsoleUI consoleUI;
     Inspector inspector;
+    Validator validator;
     InputReader inputReader;
+
+    public ArrayList<String[]> getIncorrectData (){return incorrectObjectsFromInspector;}
 
     public Hub(ConsoleUI consoleUI) {
         this.consoleUI = consoleUI;
-
         inputReader = new InputReader();
-        this.objectsFromUser = new ArrayList<>();
+        this.userInput = new ArrayList<>();
     }
 
-    public void addPerson() {
+    public void readConsole() {
         inputReader.readInput();
-        objectsFromUser = inputReader.getList();
-        inspector= new Inspector(objectsFromUser);
-        correctObjectsFromInspector = inspector.getCorrectDataList();
-        incorrectObjectsFromInspector = inspector.getIncorrectDataList();
-        Validator validator = new Validator(correctObjectsFromInspector);
-        validator.validateAll();
+        if(inputReader.getListSize() == 0) System.out.println("\nВы ничего не добавили\n");
+        else userInput = inputReader.getList();
+        inspect();
+    }
 
-//        for (String[] object : objects) {
-//            System.out.println(Arrays.toString(object));
-//        }
-//        System.out.println();
+    public void readFile() {
+        //TO DO
+    }
+
+    private void inspect(){
+        inspector = new Inspector(userInput);
+        incorrectObjectsFromInspector = inspector.getIncorrectDataList();
+        correctObjectsFromInspector = inspector.getCorrectDataList();
+    }
+
+    private void validate(){
+        validator = new Validator(correctObjectsFromInspector);
+    }
+
+
+    public void print() {
+        printer = new Printer(correctObjectsFromInspector, incorrectObjectsFromInspector);
     }
 }
 
